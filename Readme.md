@@ -1,5 +1,5 @@
 # Merhaba, ben Süleyman Mercan! 👋
-
+live on https://slymnmrcn.github.io/
 ### React Native & Frontend Developer
 
 Matematik ve Bilgisayar Bilimleri arka planına sahip, mobil ve web teknolojileriyle kullanıcı odaklı çözümler üreten bir yazılımcıyım. Karmaşık problemleri basit ve performanslı kodlara dönüştürmeyi seviyorum.
