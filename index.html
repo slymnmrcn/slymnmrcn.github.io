@@ -4,12 +4,308 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Süleyman MERCAN | Frontend & React Native Developer</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text-gray: #64748b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 2rem;
+        }
+        
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        header {
+            height: 65vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .hero {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .social-links {
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.8rem;
+            margin: 0 1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+            box-shadow: 0 4px 15px rgba(37,99,235,0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+        }
+        
+        section {
+            padding: 5rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .bg-light {
+            background: #f1f5f9;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #475569;
+        }
+        
+        .skills-grid, .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-card, .project-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .skill-card:hover, .project-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+        
+        .skill-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-card h3, .project-item h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-size: 1.5rem;
+        }
+        
+        .skill-card p, .project-item p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        .badge {
+            background: #e0e7ff;
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--dark);
+            color: white;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
-        <div class="container nav-content">
+        <div class="nav-content">
             <div class="logo">SM<span>.dev</span></div>
             <ul>
                 <li><a href="#about">Hakkımda</a></li>
@@ -25,9 +321,9 @@
             <h1>Süleyman MERCAN</h1>
             <p class="subtitle">React Native & Frontend Developer</p>
             <div class="social-links">
-                <a href="https://github.com/slymnmrcn" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/slymanmrcan" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:slymanmrcan@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/slymnmrcn" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/slymanmrcan" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:slymanmrcan@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
             <a href="#projects" class="btn">Projelerimi Gör</a>
         </div>
@@ -35,7 +331,9 @@
 
     <section id="about" class="container">
         <h2>Hakkımda</h2>
-        <p>Expo ve React Native CLI ile yüksek performanslı mobil uygulamalar, Next.js ile modern web arayüzleri geliştiriyorum. MVP projelerinde hızlı prototipleme ve Oracle Cloud üzerinde deployment süreçlerine hakimim. Matematik ve İstatistik geçmişimi problem çözme süreçlerime entegre ediyorum.</p>
+        <div class="about-content">
+            <p>Expo ve React Native CLI ile yüksek performanslı mobil uygulamalar, Next.js ile modern web arayüzleri geliştiriyorum. MVP projelerinde hızlı prototipleme ve Oracle Cloud üzerinde deployment süreçlerine hakimim. Matematik ve İstatistik geçmişimi problem çözme süreçlerime entegre ediyorum.</p>
+        </div>
     </section>
 
     <section id="skills" class="bg-light">
@@ -44,7 +342,7 @@
             <div class="skills-grid">
                 <div class="skill-card">
                     <i class="fas fa-mobile-alt"></i>
-                    <h3>Mobil</h3>
+                    <h3>Mobil Geliştirme</h3>
                     <p>React Native, Expo, React Navigation, Play Store Deployment</p>
                 </div>
                 <div class="skill-card">
@@ -85,10 +383,44 @@
         </div>
     </section>
 
-    <footer>
+    <footer id="contact">
         <p>&copy; 2024 Süleyman MERCAN. Tüm hakları saklıdır.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Scroll Reveal Efekti
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Smooth scroll için
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
