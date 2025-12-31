@@ -51,17 +51,44 @@ nav ul li { margin-left: 2rem; }
 nav ul li a { color: white; text-decoration: none; transition: 0.3s; }
 nav ul li a:hover { color: var(--primary); }
 
+/* Header alanını tam ekrandan (100vh), daha makul bir yüksekliğe (60vh) çektik */
 header {
-    height: 100vh;
+    height: 60vh; /* Yükseklik azaldı */
+    min-height: 400px; /* Çok küçük ekranlarda ezilmemesi için */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     color: white;
+    padding-top: 80px; /* Navigasyonun altında kalmaması için */
 }
 
-h1 { font-size: 3.5rem; margin-bottom: 0.5rem; }
+/* Başlık boyutlarını biraz daha optimize edelim */
+h1 { 
+    font-size: 2.8rem; /* 3.5'ten düşürdük */
+    margin-bottom: 0.5rem; 
+    letter-spacing: -1px;
+}
+
+.subtitle { 
+    font-size: 1.2rem; 
+    color: #94a3b8; /* Daha yumuşak bir gri */
+    margin-bottom: 1.5rem; 
+}
+
+/* Sosyal linkleri ve butonu yan yana getirebiliriz (isteğe bağlı) */
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.8rem; /* Butonu da hafif küçülttük */
+    font-weight: 500;
+}
 .subtitle { font-size: 1.5rem; color: var(--text-gray); margin-bottom: 2rem; }
 
 .social-links a {
